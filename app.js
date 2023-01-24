@@ -59,7 +59,7 @@ app.get("/", function(req, res){
 });
 
 app.get("/:customListName", function(req, res){
-    if (req.params.name != "favicon.ico") {
+    if (req.params.customListName != "favicon.ico") {
         const name = _.capitalize(req.params.name);
     const customListName = _.capitalize(req.params.customListName);
 
