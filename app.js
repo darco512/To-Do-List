@@ -59,7 +59,7 @@ app.get("/", function(req, res){
 });
 
 app.get("/:customListName", function(req, res){
-    if (req.params.name!= "/favicon.ico") {
+    if (req.params.name != "favicon.ico") {
         const name = _.capitalize(req.params.name);
     const customListName = _.capitalize(req.params.customListName);
 
@@ -70,8 +70,10 @@ app.get("/:customListName", function(req, res){
                         name: customListName,
                         items: defaultItems
                 });
-                    list.save();
-                    res.redirect("/"+customListName)
+                    list.save(function(){
+                        res.redirect("/"+customListName);
+                    });
+                    
                 }else{
                     res.render("list", {listTitle: foundList.name, newListItem: foundList.items})
                 }
