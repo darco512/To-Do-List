@@ -53,14 +53,10 @@ app.get("/", function(req, res){
         res.render("list",{listTitle: "Today", newListItem: items});
     }
     })
-
-    
-
 });
 
 app.get("/:customListName", function(req, res){
     if (req.params.customListName != "favicon.ico") {
-        const name = _.capitalize(req.params.name);
     const customListName = _.capitalize(req.params.customListName);
 
         List.findOne({name: customListName}, function(err, foundList){
@@ -84,7 +80,6 @@ app.get("/:customListName", function(req, res){
 
 });
 
-
 app.post("/", function(req,res){
     const itemName = req.body.addList;
     const listName= req.body.list;
@@ -102,8 +97,7 @@ app.post("/", function(req,res){
                 foundList.save();
                 res.redirect("/"+ listName);
             })
-        }
-        
+        }  
 });
 
 app.post("/delete",function(req,res){
@@ -125,7 +119,6 @@ app.post("/delete",function(req,res){
     }
     
 }); 
-
 
 app.get("/about", function(req,res){
     res.render("about");
